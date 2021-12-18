@@ -1,5 +1,4 @@
 import discord
-from discord import player
 from discord.ext import commands
 from music_new import Player
 
