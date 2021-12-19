@@ -25,6 +25,7 @@ class Player(commands.Cog):
         elif ctx.voice_client is not None and ctx.voice_client.channel != ctx.author.voice.channel:
             await ctx.voice_client.disconnect()
         await ctx.author.voice.channel.connect()
+        print(type(ctx.voice_client))
         
     @commands.command()
     async def leave(self, ctx:commands.Context):

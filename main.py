@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
-from music_new import Player
+from music import Player
+import token
+import os
 
 intents = discord.Intents.default()
 intents.members = True
@@ -17,5 +19,8 @@ async def setup():
     await bot.wait_until_ready() 
     bot.add_cog(Player(bot)) 
 
+token_file = open('token.txt', 'r')
+token = token_file.read()
+
 bot.loop.create_task(setup())
-bot.run('OTE3NDg2MjczOTkwNjUxOTE0.Ya5ZrQ.M7adMTwuoCdWh-9Jb_CqPymN8cc') # в скобках указывается токен
+bot.run(str(token)) # в скобках указывается токен
