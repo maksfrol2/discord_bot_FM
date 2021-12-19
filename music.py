@@ -14,7 +14,7 @@ class Player(commands.Cog):
         Принимает на вход контекст и строку с url ссылкой'''
         url = pafy.new(song).getbestaudio().url
         ctx.voice_client.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(url)))
-        ctx.voice_client.source.volume = 1 #Громкость воспроизведения
+        ctx.voice_client.source.volume = 1
 
     @commands.command()
     async def join(self, ctx:commands.Context):

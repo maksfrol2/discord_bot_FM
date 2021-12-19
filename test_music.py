@@ -19,14 +19,15 @@ async def test_join():
     player = music.Player
     player.join = unittest.mock.AsyncMock()
     await music.Player.join(player,ctx)
-    assert ctx.voice_client.is_connected() == True
+    assert ctx.voice_client.get_guild is not None
 
 @pytest.mark.asyncio
 async def test_leave(player):
     ctx = unittest.mock.Mock()
+    player = music.Player
     player.leave = unittest.mock.AsyncMock()
     await player.leave(player,ctx)
-    assert ctx.voice_client.is_connected() == False
+    assert ctx.voice_client is None
 
 @pytest.mark.asyncio
 async def test_pause(player):
@@ -38,12 +39,11 @@ async def test_pause(player):
 @pytest.mark.asyncio
 async def test_commands():
     ctx = unittest.mock.Mock
-    ctx.author.id = 5
     ctx.send = unittest.mock.AsyncMock()
     player = music.Player
     await player.commands(player,ctx)
     ctx.send.assert_called()
-    a = ctx.send.call_args.args[0]
+    a = ctx.send.call_args
     assert a.embed.title =='Список команд'
 
 if __name__ == '__main__':
